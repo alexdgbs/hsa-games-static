@@ -1,0 +1,6 @@
+# Ignorar el directorio de salida de Nuxt
+
+# Ignorar las dependencias de Node
+node_modules/
+
+.nuxt/
