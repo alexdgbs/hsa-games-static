@@ -3,7 +3,7 @@
     <div class="space-y-6">
       <div>
         <h2 class="text-center text-2xl font-semibold text-gray-900">Suscríbete por solo $49</h2>
-        <p class="mt-1 text-center text-xs text-gray-600">
+        <p class="mt-1 text-center text-sm text-gray-600">
           Elige el método de pago y accede a contenido exclusivo.
         </p>
       </div>
@@ -11,7 +11,7 @@
         <h3 class="text-lg font-medium text-gray-700 text-center mb-4">Métodos de Pago</h3>
         <div id="paypal-button-container" class="mt-2 relative"></div>
 
-        <button v-if="isSubscribed" @click="cancelSubscription" class="mt-4 w-full rounded-md bg-red-400 px-3 py-2 text-center text-xs font-semibold text-white shadow-sm hover:bg-red-500">
+        <button v-if="isSubscribed" @click="cancelSubscription" class="mt-4 w-full rounded-md bg-red-400 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-500">
           Cancelar Suscripción
         </button>
       </div>

@@ -10,7 +10,7 @@
           <h3 class="text-xl font-bold tracking-tight text-gray-900">HSA Games</h3>
           <p class="mt-4 text-sm leading-6 text-gray-600">Nostalgia</p>
           <div class="mt-6 flex items-center gap-x-2">
-            <h4 class="flex-none text-xs font-semibold leading-5 text-sky-800">¡No tienes límites de descarga!</h4>
+            <h4 class="flex-none text-sm font-semibold leading-5 text-sky-800">¡No tienes límites de descarga!</h4>
             <div class="h-px flex-auto bg-gray-100"></div>
           </div>
           <ul role="list" class="mt-6 grid grid-cols-1 gap-3 text-xs leading-5 text-gray-600 sm:grid-cols-2 sm:gap-4">
@@ -61,7 +61,7 @@
                 <span class="text-xs font-semibold leading-5 tracking-wide text-gray-600">MX</span>
               </p>
               
-              <button @click="handleSubscription" class="mt-8 block w-full rounded-md bg-sky-400 px-3 py-2 text-center text-xs font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Suscribirme</button>
+              <button @click="handleSubscription" class="mt-8 block w-full rounded-md bg-sky-400 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Suscribirme</button>
               <p class="mt-4 text-xs leading-4 text-gray-600">Retro-Arcade</p>
             </div>
           </div>

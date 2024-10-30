@@ -26,12 +26,12 @@
           </a>
         </div>
 
-        <div class="hidden lg:flex space-x-6 text-black text-sm">
+        <div class="hidden lg:flex space-x-6 text-black text-md">
           <a href="/inicio" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Inicio</a>
           <a href="/precios" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Precios</a>
           <a href="/consolas" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Consolas</a>
           <a href="/emuladores" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Emuladores</a>
-          <a href="/PAC-MAN.HTML" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Arcade</a>
+          <a href="/PAC-MAN.html" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Arcade</a>
         </div>
 
         <div class="hidden lg:flex items-center space-x-4">
@@ -54,42 +54,43 @@
 
         <div class="block lg:hidden relative">
           <button @click="toggleUserMenu" class="text-black focus:outline-none transform transition-transform duration-300 ease-in-out hover:scale-110">
-            <svg class="w-6 h-6 transition-transform duration-300 ease-in-out" :class="{'rotate-90': userMenuOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-8 h-8 transition-transform duration-300 ease-in-out" :class="{'rotate-90': userMenuOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
           </button>
 
           <transition name="fade">
-            <div v-if="userMenuOpen" class="fixed inset-0 bg-white z-50 p-4 transition-opacity duration-300 ease-in-out">
-              <div class="flex justify-end">
-                <button @click="toggleUserMenu" class="text-black focus:outline-none">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
-              <ul class="flex flex-col items-center space-y-4 mt-6">
-                <li><a href="/inicio" class="block text-sm hover:bg-gray-100 p-2 rounded transition duration-300">Inicio</a></li>
-                <li><a href="/precios" class="block text-sm hover:bg-gray-100 p-2 rounded transition duration-300">Precios</a></li>
-                <li><a href="/consolas" class="block text-sm hover:bg-gray-100 p-2 rounded transition duration-300">Consolas</a></li>
-                <li><a href="/emuladores" class="block text-sm hover:bg-gray-100 p-2 rounded transition duration-300">Emuladores</a></li>
-                <li><a href="/team" class="block text-sm hover:bg-gray-100 p-2 rounded transition duration-300">Team</a></li>
-                
-                <li v-if="!isAuthenticated">
-                  <a href="/register" class="block text-sm text-sky-800 hover:bg-gray-100 p-2 rounded transition duration-300">Crear Cuenta</a>
-                </li>
-                <li v-if="isAuthenticated">
-                  <button @click="logout" class="block text-sm text-red-500 hover:bg-gray-100 p-2 rounded transition duration-300">Cerrar Sesión</button>
-                </li>
-                <li v-if="isAuthenticated" class="text-slate-400 text-sm text-center">
-                  Hola, {{ email }}
-                </li>
-              </ul>
-            </div>
-          </transition>
+    <div v-if="userMenuOpen" class="fixed inset-0 bg-white z-50 p-4 transition-opacity duration-300 ease-in-out flex flex-col items-center justify-center">
+    <button @click="toggleUserMenu" class="text-black focus:outline-none absolute top-4 right-4">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <ul class="flex flex-col items-center space-y-4 mt-8">
+      <li><a href="/inicio" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Inicio</a></li>
+      <li><a href="/precios" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Precios</a></li>
+      <li><a href="/consolas" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Consolas</a></li>
+      <li><a href="/emuladores" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Emuladores</a></li>
+      <li><a href="/team" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Team</a></li>
+
+      <li v-if="!isAuthenticated">
+        <a href="/register" class="block text-sm text-sky-800 hover:bg-gray-100 p-2 rounded transition duration-300">Registrarse / Iniciar sesión</a>
+      </li>
+      <li v-if="isAuthenticated">
+        <button @click="logout" class="block text-sm text-red-500 hover:bg-gray-100 p-2 rounded transition duration-300">Cerrar Sesión</button>
+      </li>
+    
+    </ul>
+  </div>
+</transition>
+
         </div>
       </div>
     </nav>
+
+    <div v-if="isAuthenticated" class="lg:hidden fixed bottom-0 left-0 right-0 bg-red-500 text-white shadow py-2 flex items-center justify-center">
+      <span class="text-sm">Hola, {{ email }}</span>
+    </div>
   </div>
 </template>
 
@@ -116,10 +117,10 @@ export default {
       if (match) {
         this.email = match[1];
         this.isAuthenticated = true;
-        this.checkSubscription(); 
+        this.checkSubscription();
       } else {
         this.isAuthenticated = false;
-        this.isSubscribed = false; 
+        this.isSubscribed = false;
       }
     },
     async checkSubscription() {
@@ -130,7 +131,7 @@ export default {
           const response = await fetch(`https://api.hsa-games.com/api/user?email=${emailValue}`);
           if (response.ok) {
             const userData = await response.json();
-            this.isSubscribed = userData.isSubscribed; 
+            this.isSubscribed = userData.isSubscribed;
           }
         } catch (error) {
           console.error('Error al obtener la información del usuario:', error);
@@ -143,6 +144,7 @@ export default {
       this.isAuthenticated = false;
       this.isSubscribed = false;
       this.$router.push('/');
+      window.dispatchEvent(new Event('user-logged-out'));
     },
   },
   beforeDestroy() {
@@ -152,15 +154,12 @@ export default {
 </script>
 
 <style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1.46, 0.5, 1.05);
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to  {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
-  transform: translateY(-10px);
-}
-
-.fixed.inset-0 {
-  z-index: 9999;
 }
 </style>
