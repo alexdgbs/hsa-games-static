@@ -27,7 +27,7 @@
         </div>
 
         <div class="hidden lg:flex space-x-6 text-black text-md">
-          <a href="/inicio" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Inicio</a>
+          <a href="/" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Inicio</a>
           <a href="/precios" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Precios</a>
           <a href="/consolas" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Consolas</a>
           <a href="/emuladores" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Emuladores</a>
@@ -71,8 +71,9 @@
       <li><a href="/precios" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Precios</a></li>
       <li><a href="/consolas" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Consolas</a></li>
       <li><a href="/emuladores" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Emuladores</a></li>
+      <li><a href="/flappy.html" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Flappy</a></li>
       <li><a href="/team" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Team</a></li>
-
+      
       <li v-if="!isAuthenticated">
         <a href="/register" class="block text-md text-sky-800 hover:bg-gray-100 p-2 rounded transition duration-300">Registrarse / Iniciar sesión</a>
       </li>

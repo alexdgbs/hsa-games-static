@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="default-layout">
     <Navbar />
     <main>
       <Nuxt />
@@ -18,5 +18,9 @@ export default {
 </script>
 
 <style scoped>
-
+@media (max-width: 768px) {
+  .default-layout {
+    padding: 16px; 
+  }
+}
 </style>
