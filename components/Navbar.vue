@@ -31,7 +31,7 @@
           <a href="/precios" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Precios</a>
           <a href="/consolas" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Consolas</a>
           <a href="/emuladores" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Emuladores</a>
-          <a href="/PAC-MAN.html" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Arcade</a>
+          <a href="/pong" class="hover:text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">Arcade</a>
         </div>
 
         <div class="hidden lg:flex items-center space-x-4">
@@ -88,9 +88,10 @@
       </div>
     </nav>
 
-    <div v-if="isAuthenticated" class="lg:hidden fixed bottom-0 left-0 right-0 bg-red-500 text-white shadow py-2 flex items-center justify-center">
-      <span class="text-sm">Hola, {{ email }}</span>
-    </div>
+<div v-if="isAuthenticated && $route.path === '/'" class="lg:hidden fixed bottom-0 left-0 right-0 bg-red-500 text-white shadow py-2 flex items-center justify-center">
+  <span class="text-sm">Hola, {{ email }}</span>
+</div>
+
   </div>
 </template>
 
