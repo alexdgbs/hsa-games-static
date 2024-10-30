@@ -67,17 +67,17 @@
       </svg>
     </button>
     <ul class="flex flex-col items-center space-y-4 mt-8">
-      <li><a href="/inicio" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Inicio</a></li>
+      <li><a href="/" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Inicio</a></li>
       <li><a href="/precios" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Precios</a></li>
       <li><a href="/consolas" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Consolas</a></li>
       <li><a href="/emuladores" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Emuladores</a></li>
       <li><a href="/team" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Team</a></li>
 
       <li v-if="!isAuthenticated">
-        <a href="/register" class="block text-sm text-sky-800 hover:bg-gray-100 p-2 rounded transition duration-300">Registrarse / Iniciar sesión</a>
+        <a href="/register" class="block text-md text-sky-800 hover:bg-gray-100 p-2 rounded transition duration-300">Registrarse / Iniciar sesión</a>
       </li>
       <li v-if="isAuthenticated">
-        <button @click="logout" class="block text-sm text-red-500 hover:bg-gray-100 p-2 rounded transition duration-300">Cerrar Sesión</button>
+        <button @click="logout" class="block text-md text-red-500 hover:bg-gray-100 p-2 rounded transition duration-300">Cerrar Sesión</button>
       </li>
     
     </ul>
@@ -88,9 +88,10 @@
       </div>
     </nav>
 
-<div v-if="isAuthenticated && $route.path === '/'" class="lg:hidden fixed bottom-0 left-0 right-0 bg-red-500 text-white shadow py-2 flex items-center justify-center">
-  <span class="text-sm">Hola, {{ email }}</span>
-</div>
+    <div v-if="isAuthenticated && ($route.path === '/')" 
+     class="lg:hidden fixed bottom-0 left-0 right-0 bg-red-500 text-white shadow py-2 flex items-center justify-center">
+    <span class="text-sm">Hola, {{ email }}</span>
+    </div>
 
   </div>
 </template>
