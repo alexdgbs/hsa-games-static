@@ -60,40 +60,36 @@
           </button>
 
           <transition name="fade">
-    <div v-if="userMenuOpen" class="fixed inset-0 bg-white z-50 p-4 transition-opacity duration-300 ease-in-out flex flex-col items-center justify-center">
-    <button @click="toggleUserMenu" class="text-black focus:outline-none absolute top-4 right-4">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-    <ul class="flex flex-col items-center space-y-4 mt-8">
-      <li><a href="/" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Inicio</a></li>
-      <li><a href="/precios" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Precios</a></li>
-      <li><a href="/consolas" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Consolas</a></li>
-      <li><a href="/emuladores" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Emuladores</a></li>
-      <li><a href="/flappy.html" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Flappy</a></li>
-      <li><a href="/team" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Team</a></li>
-      
-      <li v-if="!isAuthenticated">
-        <a href="/register" class="block text-md text-sky-800 hover:bg-gray-100 p-2 rounded transition duration-300">Registrarse / Iniciar sesión</a>
-      </li>
-      <li v-if="isAuthenticated">
-        <button @click="logout" class="block text-md text-red-500 hover:bg-gray-100 p-2 rounded transition duration-300">Cerrar Sesión</button>
-      </li>
-    
-    </ul>
-  </div>
-</transition>
-
+            <div v-if="userMenuOpen" class="fixed inset-0 bg-white z-50 p-4 transition-opacity duration-300 ease-in-out flex flex-col items-center justify-center">
+              <button @click="toggleUserMenu" class="text-black focus:outline-none absolute top-4 right-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+              <ul class="flex flex-col items-center space-y-4 mt-8">
+                <li><a href="/" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Inicio</a></li>
+                <li><a href="/precios" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Precios</a></li>
+                <li><a href="/consolas" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Consolas</a></li>
+                <li><a href="/emuladores" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Emuladores</a></li>
+                <li><a href="/team" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Team</a></li>
+                
+                <li v-if="!isAuthenticated">
+                  <a href="/register" class="block text-md text-sky-800 hover:bg-gray-100 p-2 rounded transition duration-300">Registrarse / Iniciar sesión</a>
+                </li>
+                <li v-if="isAuthenticated">
+                  <button @click="logout" class="block text-md text-red-500 hover:bg-gray-100 p-2 rounded transition duration-300">Cerrar Sesión</button>
+                </li>
+              </ul>
+            </div>
+          </transition>
         </div>
       </div>
     </nav>
 
     <div v-if="isAuthenticated && ($route.path === '/')" 
-     class="lg:hidden fixed bottom-0 left-0 right-0 bg-red-500 text-white shadow py-2 flex items-center justify-center">
-    <span class="text-sm">Hola, {{ email }}</span>
+      class="lg:hidden fixed bottom-0 left-0 right-0 bg-red-500 text-white shadow py-2 flex items-center justify-center hide-in-landscape">
+      <span class="text-sm">Hola, {{ email }}</span>
     </div>
-
   </div>
 </template>
 
@@ -110,6 +106,11 @@ export default {
   mounted() {
     this.checkAuthentication();
     window.addEventListener('storage', this.checkAuthentication);
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('storage', this.checkAuthentication);
+    window.removeEventListener('resize', this.handleResize); 
   },
   methods: {
     toggleUserMenu() {
@@ -149,20 +150,23 @@ export default {
       this.$router.push('/');
       window.dispatchEvent(new Event('user-logged-out'));
     },
-  },
-  beforeDestroy() {
-    window.removeEventListener('storage', this.checkAuthentication);
+    handleResize() {
+    },
   },
 };
 </script>
 
 <style>
-.fade-enter-active,
-.fade-leave-active {
+.fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter,
-.fade-leave-to {
+.fade-enter, .fade-leave-to  {
   opacity: 0;
+}
+
+@media (orientation: landscape) {
+  .hide-in-landscape {
+    display: none;
+  }
 }
 </style>

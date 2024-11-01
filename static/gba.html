@@ -6,6 +6,14 @@
   <title>HSA Advance</title>
   
   <style>
+    .controles1{
+      justify-content: center;
+      text-align: center;
+      font-size: 13px;
+      color: #404040;;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      animation: fadeInOut 2s infinite;
+    }
     body {
       background-color: #ffffff; 
       font-family: 'Courier New', Courier, monospace; 
@@ -15,28 +23,28 @@
       justify-content: center;
       min-height: 100vh;
       margin: 0;
+      padding: 16px;
+      overflow: hidden; 
     }
 
     #navbar {
-      position: absolute;
-      top: 20px;
-      left: 50%; 
-      transform: translateX(-50%); 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
       display: flex;
-      align-items: center;
+      flex-direction: column; 
+      align-items: center; 
+      background-color: #ffffff;
+      padding: 10px 0; 
+      box-shadow: 0 2px 5px rgba(170, 170, 170, 0.2); 
+      z-index: 1000; 
     }
-
-    .back-link {
-      text-decoration: none;
-      color: #3182ce;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-    }
+    
 
     .back-link img {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: auto;
       margin-right: 8px;
       animation: pulse 1.5s infinite; 
     }
@@ -72,7 +80,7 @@
       flex-direction: column;
       align-items: center;
       width: 300px;
-      margin-top: 10px; 
+      margin-top: 0; 
       box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.1);
       animation: fadeInUp 0.5s ease-in-out;
   }
@@ -120,19 +128,7 @@
     .button:active, .bigbutton:active {
       background-color: #bdbdbd;
     }
-    
-    #bottom-bar {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #EF4444;
-      padding: 1px;
-      text-align: center;
-      font-size: 13px;
-      color: #ffffff;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+
 
     .titulo {
       font-size: 13px;
@@ -149,6 +145,24 @@
         opacity: 0.5;
       }
     }
+
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
+  body {
+      display: none; 
+  }
+}
+
+
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
+  html, body {
+      height: 100%;
+      background-color: #f0f0f0;
+  }
+}
+
+
+
+
   </style>
 
   <script src="js/util.js"></script>
@@ -261,15 +275,21 @@
         gba.audio.context.resume();
       }
     }
+    
   </script>
 </head>
 <body>
+  
   <div id="navbar">
     <a href="/" class="back-link">
       <img src="/img/flecha.png" alt="Volver">
     </a>
+    <div>
+      <p class="controles1"><strong>Controles:<br>Tecla A = Z - Tecla B = X - Tecla L = A - Tecla R = S - D-pad = Keypad - Enter = START</strong></p>
+    </div>
   </div>
-  
+
+
   <div id="game-container">
     <canvas id="screen" width="240" height="160"></canvas> 
 
@@ -282,11 +302,7 @@
       <button id="select" class="bigbutton" onclick="document.getElementById('loader').click()">SELECT</button>
       <button id="pause" class="bigbutton" onclick="togglePause()">PAUSE</button>
       <button class="bigbutton" onclick="reset()">RESET</button>
-      <button class="bigbutton" onclick="screenshot()">Screenshot</button>
       </div>
-  
-  <div id="bottom-bar">
-    <p><strong>Controles: Tecla A = Z - Tecla B = X - Tecla L = A - Tecla R = S - D-pad = Keypad - Enter = START</strong></p>
-  </div>
+      
 </body>
 </html>
