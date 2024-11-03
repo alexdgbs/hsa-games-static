@@ -50,7 +50,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 10px;
+      padding: 5px;
       box-shadow: 0 -2px 5px rgba(170, 170, 170, 0.2);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       z-index: 1000;
@@ -60,7 +60,7 @@
 
     #bottom-bar p {
       margin: 0;
-      font-size: small;
+      font-size: x-small;
       color: rgb(255, 255, 255);
     }
 
@@ -168,8 +168,19 @@
   body {
       display: none; 
   }
+  #bottom-bar {
+    display: none; 
+  }
 }
 
+@media only screen and (max-width: 1024px) {
+  #bottom-bar {
+    display: none;
+  }
+  .back-link img {
+    width: 32px; 
+  }
+}
 
 @media only screen and (max-width: 1024px) and (orientation: landscape) {
   html, body {
@@ -310,9 +321,9 @@
     <p class="titulo"><strong>Gameboy Advance</strong></p>
   </div>
       <div id="controls2">
-      <button id="select" class="bigbutton" onclick="document.getElementById('loader').click()">SELECT</button>
-      <button id="pause" class="bigbutton" onclick="togglePause()">PAUSE</button>
-      <button class="bigbutton" onclick="reset()">RESET</button>
+      <button id="select" class="bigbutton" onclick="document.getElementById('loader').click()"><strong>SELECT</strong></button>
+      <button id="pause" class="bigbutton" onclick="togglePause()"><strong>PAUSE</strong></button>
+      <button class="bigbutton" onclick="reset()"><strong>RESET</strong></button>
       </div>
 
       <div id="bottom-bar">
