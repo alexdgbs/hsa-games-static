@@ -2,7 +2,7 @@ export default {
   head: {
     title: 'hsa-games',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'es'
     },
     meta: [
       { charset: 'utf-8' },

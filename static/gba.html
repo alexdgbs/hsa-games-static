@@ -1,19 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HSA Advance</title>
   
   <style>
-    .controles1{
-      justify-content: center;
-      text-align: center;
-      font-size: 13px;
-      color: #404040;;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      animation: fadeInOut 2s infinite;
-    }
+
     body {
       background-color: #ffffff; 
       font-family: 'Courier New', Courier, monospace; 
@@ -33,11 +26,11 @@
       left: 0; 
       right: 0; 
       display: flex;
+      margin-top: 16px;
       flex-direction: column; 
       align-items: center; 
       background-color: #ffffff;
       padding: 10px 0; 
-      box-shadow: 0 2px 5px rgba(170, 170, 170, 0.2); 
       z-index: 1000; 
     }
     
@@ -46,8 +39,31 @@
       width: 24px;
       height: auto;
       margin-right: 8px;
-      animation: pulse 1.5s infinite; 
+      animation: fadeInUp 0.5s ease-in-out;
     }
+    #bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #f56565;;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      box-shadow: 0 -2px 5px rgba(170, 170, 170, 0.2);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      z-index: 1000;
+      text-align: center;
+      animation: fadeInUp 0.5s ease-in-out;
+    }
+
+    #bottom-bar p {
+      margin: 0;
+      font-size: small;
+      color: rgb(255, 255, 255);
+    }
+
 
     @keyframes pulse {
       0% {
@@ -100,12 +116,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      animation: fadeInUp 0.5s ease-in-out;
     }
     #controls2 {
       margin-top: 20px;
       display: flex;
       flex-direction:initial;
       align-items: center;
+      animation: fadeInUp 0.5s ease-in-out;
     }
     .button, .bigbutton {
       background-color: #ffffff;
@@ -156,13 +174,9 @@
 @media only screen and (max-width: 1024px) and (orientation: landscape) {
   html, body {
       height: 100%;
-      background-color: #f0f0f0;
+      background-color: #f56565;
   }
 }
-
-
-
-
   </style>
 
   <script src="js/util.js"></script>
@@ -275,18 +289,15 @@
         gba.audio.context.resume();
       }
     }
-    
   </script>
 </head>
 <body>
+  
   
   <div id="navbar">
     <a href="/" class="back-link">
       <img src="/img/flecha.png" alt="Volver">
     </a>
-    <div>
-      <p class="controles1"><strong>Controles:<br>Tecla A = Z - Tecla B = X - Tecla L = A - Tecla R = S - D-pad = Keypad - Enter = START</strong></p>
-    </div>
   </div>
 
 
@@ -303,6 +314,9 @@
       <button id="pause" class="bigbutton" onclick="togglePause()">PAUSE</button>
       <button class="bigbutton" onclick="reset()">RESET</button>
       </div>
-      
+
+      <div id="bottom-bar">
+        <p><strong>Controles: <br>Tecla A = Z - Tecla B = X - Tecla L = A - Tecla R = S - D-pad = Keypad - Enter = START</strong></p>
+      </div> 
 </body>
 </html>
