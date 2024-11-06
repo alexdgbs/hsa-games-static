@@ -1,16 +1,26 @@
 <template>
-  <div class="relative z-0 bg-white max-w-sm mx-auto py-6 px-2 sm:px-4 lg:px-6">
+  <div class="relative z-0 bg-white max-w-sm mx-auto py-6 px-2 sm:px-4 lg:px-6 fade-in">
+
     <div class="space-y-6">
       <div>
-        <h2 class="text-center text-2xl font-semibold text-gray-900">Suscríbete por solo $49</h2>
+     
+        <h2 class="text-center text-2xl font-semibold text-gray-900">
+          {{ isSubscribed ? "Nostalgia" : "Suscríbete por solo $49" }}
+        </h2>
+      
         <p class="mt-1 text-center text-sm text-gray-600">
-          Elige el método de pago y accede a contenido exclusivo.
+          {{ isSubscribed ? "Retro-Arcade" : "Elige el método de pago y accede a contenido exclusivo." }}
         </p>
       </div>
       <div class="bg-gray-100 py-4 px-2 shadow sm:rounded-lg sm:px-6">
-        <h3 class="text-lg font-medium text-gray-700 text-center mb-4">Métodos de Pago</h3>
-        <div id="paypal-button-container" class="mt-2 relative"></div>
+        <h3 class="text-lg font-medium text-gray-700 text-center mb-4">
+          {{ isSubscribed ? "Suscrito" : "Métodos de Pago" }}
+        </h3>
 
+     
+        <div v-if="!isSubscribed" id="paypal-button-container" class="mt-2 relative"></div>
+
+        
         <button v-if="isSubscribed" @click="cancelSubscription" class="mt-4 w-full rounded-md bg-red-400 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-500">
           Cancelar Suscripción
         </button>
@@ -23,16 +33,19 @@
 export default {
   data() {
     return {
-      isSubscribed: false, 
+      isSubscribed: false,
     };
   },
-  mounted() {
-    this.checkSubscription();
+  async mounted() {
+    await this.checkSubscription();
+
     
-    const script = document.createElement('script');
-    script.src = "https://www.paypal.com/sdk/js?client-id=AXQeb763-UfMzlLsheOGAQdXyM-xzZ4MPxXXZAaZ44MQT-7bWdbDuiRxl6-gwxuCgXf6Jnc0LKSdL1vk&currency=MXN";
-    script.addEventListener('load', this.renderPayPalButton);
-    document.body.appendChild(script);
+    if (!this.isSubscribed) {
+      const script = document.createElement('script');
+      script.src = "https://www.paypal.com/sdk/js?client-id=AXQeb763-UfMzlLsheOGAQdXyM-xzZ4MPxXXZAaZ44MQT-7bWdbDuiRxl6-gwxuCgXf6Jnc0LKSdL1vk&currency=MXN";
+      script.addEventListener('load', this.renderPayPalButton);
+      document.body.appendChild(script);
+    }
   },
   methods: {
     async checkSubscription() {
@@ -41,7 +54,6 @@ export default {
         const emailValue = emailCookie.split('=')[1];
         try {
           const response = await fetch(`https://api.hsa-games.com/api/user?email=${emailValue}`);
-
           if (response.ok) {
             const userData = await response.json();
             this.isSubscribed = userData.isSubscribed; 
@@ -68,31 +80,35 @@ export default {
           });
         },
         onApprove: async (data, actions) => {
-          try {
-            const orderDetails = await actions.order.capture();
-            const emailCookie = document.cookie.split(';').find(item => item.trim().startsWith('email='));
-            const emailValue = emailCookie ? emailCookie.split('=')[1] : null;
+  try {
+    const orderDetails = await actions.order.capture();
+    const emailCookie = document.cookie.split(';').find(item => item.trim().startsWith('email='));
+    const emailValue = emailCookie ? emailCookie.split('=')[1] : null;
 
-            if (emailValue) {
-              const response = await fetch('https://api.hsa-games.com/api/update-subscription', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email: emailValue, isSubscribed: true }),
-              });
-
-              if (!response.ok) {
-                throw new Error('Error al actualizar la suscripción');
-              }
-            }
-
-            alert('Transacción completada por ' + orderDetails.payer.name.given_name);
-            this.$router.push('/success');
-          } catch (err) {
-            console.error('Error en el proceso de pago:', err);
-          }
+    if (emailValue) {
+      const response = await fetch('https://api.hsa-games.com/api/update-subscription', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ email: emailValue, isSubscribed: true }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al actualizar la suscripción');
+      }
+
+      
+      this.isSubscribed = true;
+      window.dispatchEvent(new CustomEvent('subscription-updated', { detail: { isSubscribed: true } }));
+    }
+
+    alert('Transacción completada por ' + orderDetails.payer.name.given_name);
+    this.$router.push('/success');
+  } catch (err) {
+    console.error('Error en el proceso de pago:', err);
+  }
+},
         onError: (err) => {
           console.error('Error en el proceso de pago:', err);
         }
@@ -115,6 +131,9 @@ export default {
           if (!response.ok) {
             throw new Error('Error al cancelar la suscripción');
           }
+          this.isSubscribed = false;
+          window.dispatchEvent(new CustomEvent('subscription-updated', { detail: { isSubscribed: false } }));
+          
           alert('Suscripción cancelada con éxito');
           this.$router.push('/cancel');
         } else {
@@ -167,5 +186,17 @@ h3 {
 
 .menu {
   z-index: 50; 
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

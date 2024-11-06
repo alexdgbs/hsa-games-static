@@ -10,7 +10,7 @@
               type="email"
               id="email"
               v-model="email"
-              class="mt-1 block w-full px-2 py-1 text-sm border border-gray-300 rounded-lg text-gray-900 bg-gray-50"
+              class="mt-2 block w-full px-2 py-1 text-sm border border-white rounded-lg text-gray-900 bg-gray-50"
               placeholder="8hsabitgames@gmail.com"
               required
             />
@@ -21,7 +21,7 @@
               type="password"
               id="password"
               v-model="password"
-              class="mt-1 block w-full px-2 py-1 text-sm border border-gray-300 rounded-lg text-gray-900 bg-gray-50"
+              class="mt-2 block w-full px-2 py-1 text-sm border border-white rounded-lg text-gray-900 bg-gray-50"
               placeholder="********"
               required
             />
@@ -29,7 +29,7 @@
           <button
             type="submit"
             :disabled="isSubmitting"
-            class="w-full bg-slate-100 text-black font-medium rounded-lg text-sm px-3 py-2 hover:bg-slate-200"
+            class="w-full bg-white text-black font-medium rounded-lg text-sm px-3 py-2 hover:bg-slate-200"
           >
             Continuar
           </button>
@@ -103,6 +103,6 @@ input, button {
 
 input:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: whitesmoke;
 }
 </style>

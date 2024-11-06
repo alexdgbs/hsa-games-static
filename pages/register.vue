@@ -11,7 +11,7 @@
               v-model="email" 
               name="email" 
               id="email" 
-              class="w-full mt-1 px-2 py-1 text-sm border border-gray-300 rounded-lg text-gray-900 bg-gray-50" 
+              class="w-full mt-2 px-2 py-1 text-sm border border-white rounded-lg text-gray-900 bg-gray-50" 
               placeholder="8hsabitgames@gmail.com" 
               required
             >
@@ -24,7 +24,7 @@
               name="password" 
               id="password" 
               placeholder="••••••••" 
-              class="w-full mt-1 px-2 py-1 text-sm border border-gray-300 rounded-lg text-gray-900 bg-gray-50" 
+              class="w-full mt-2 px-2 py-1 text-sm border border-white rounded-lg text-gray-900 bg-gray-50" 
               required
             >
           </div>
@@ -36,7 +36,7 @@
               name="confirm-password" 
               id="confirm-password" 
               placeholder="••••••••" 
-              class="w-full mt-1 px-2 py-1 text-sm border border-gray-300 rounded-lg text-gray-900 bg-gray-50" 
+              class="w-full mt-2 px-2 py-1 text-sm border border-white rounded-lg text-gray-900 bg-gray-50" 
               required
             >
           </div>
@@ -45,14 +45,14 @@
               id="terms" 
               type="checkbox" 
               v-model="acceptTerms" 
-              class="w-4 h-4 border-gray-300 rounded" 
+              class="w-3 h-3 border-gray-300 rounded" 
               required
             >
-            <label for="terms" class="ml-2 text-sm text-gray-600">Acepto los <a href="#" class="text-sky-800 hover:underline">términos</a></label>
+            <label for="terms" class="ml-2 text-xs text-gray-600">Acepto los <a href="#" class="text-sky-800 hover:underline">términos</a></label>
           </div>
           <button 
             type="submit" 
-            class="w-full bg-slate-100 text-black font-medium rounded-lg text-sm px-3 py-2 hover:bg-slate-200"
+            class="w-full bg-white text-black font-medium rounded-lg text-sm px-3 py-2 hover:bg-slate-200"
           >
             Crear cuenta
           </button>
@@ -115,6 +115,6 @@ input, button {
 
 input:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: whitesmoke;
 }
 </style>

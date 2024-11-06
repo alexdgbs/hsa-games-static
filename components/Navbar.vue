@@ -22,7 +22,7 @@
       <div class="container mx-auto flex items-center justify-between">
         <div class="text-black text-2xl font-bold">
           <a href="/">
-            <img src="/img/logo2.png" alt="HSA//Games" class="h-10 w-auto object-contain">
+            <img src="/img/logo2.png" alt="HSA//Games" class="h-10 w-20">
           </a>
         </div>
 
@@ -37,7 +37,7 @@
         <div class="hidden lg:flex items-center space-x-4">
           <div class="relative group">
             <button class="text-black text-2xl focus:outline-none transition transform hover:scale-110">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9A3.75 3.75 0 1112 5.25 3.75 3.75 0 0115.75 9zM18.75 18a6.75 6.75 0 10-13.5 0h13.5z" />
               </svg>
             </button>
@@ -107,12 +107,23 @@ export default {
     this.checkAuthentication();
     window.addEventListener('storage', this.checkAuthentication);
     window.addEventListener('resize', this.handleResize);
+    window.addEventListener('subscription-updated', this.handleSubscriptionUpdate);
+    
   },
   beforeDestroy() {
     window.removeEventListener('storage', this.checkAuthentication);
     window.removeEventListener('resize', this.handleResize); 
+    window.removeEventListener('subscription-updated', this.handleSubscriptionUpdate);
   },
   methods: {
+    handleSubscriptionUpdate(event) {
+      
+      if (event.detail && event.detail.isSubscribed !== undefined) {
+        this.isSubscribed = event.detail.isSubscribed; 
+      } else {
+        this.isSubscribed = false; 
+      }
+    },
     toggleUserMenu() {
       this.userMenuOpen = !this.userMenuOpen;
     },
@@ -158,7 +169,7 @@ export default {
 
 <style>
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
 }
 .fade-enter, .fade-leave-to  {
   opacity: 0;
@@ -167,6 +178,7 @@ export default {
 @media (orientation: landscape) {
   .hide-in-landscape {
     display: none;
+    transform: translateY(-100%);
   }
 }
 </style>
