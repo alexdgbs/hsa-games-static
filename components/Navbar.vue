@@ -2,19 +2,18 @@
   <div>
     <transition name="fade">
       <div
-        class="bg-red-500 text-black py-1 hidden md:block"
+        class="bg-red-500 text-black py-2 hidden md:block"
         v-if="isSubscribed"
         :class="{'fade-in': isSubscribed, 'fade-out': !isSubscribed}"
       >
-        <div class="container mx-auto flex flex-col items-center text-center">
-          <span class="text-xs font-bold text-white transition duration-300 ease-in-out transform hover:scale-110">Prueba nuestro nuevo emulador</span>
-          <div></div>
-          <div class="mt-1">
-            <a href="/gba.html" class="text-xs font-bold transition duration-300 ease-in-out transform hover:scale-110 bg-red-400 text-white rounded-md px-2 py-1 shadow hover:bg-red-300">
-              HSA Advance
-            </a>
-          </div>
-        </div>
+      <div class="container mx-auto flex flex-col items-center text-center">
+  <span class="text-xs font-bold text-white transition duration-300 ease-in-out transform hover:scale-110">
+    Prueba nuestro nuevo emulador:
+    <a href="/gba.html" class="text-xs font-bold text-white underline">HSA Advance</a>
+  </span>
+</div>
+
+
       </div>
     </transition>
 
@@ -59,29 +58,29 @@
             </svg>
           </button>
 
-          <transition name="fade">
-            <div v-if="userMenuOpen" class="fixed inset-0 bg-white z-50 p-4 transition-opacity duration-300 ease-in-out flex flex-col items-center justify-center">
-              <button @click="toggleUserMenu" class="text-black focus:outline-none absolute top-4 right-4">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-              </button>
-              <ul class="flex flex-col items-center space-y-4 mt-8">
-                <li><a href="/" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Inicio</a></li>
-                <li><a href="/precios" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Precios</a></li>
-                <li><a href="/consolas" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Consolas</a></li>
-                <li><a href="/emuladores" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Emuladores</a></li>
-                <li><a href="/team" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Team</a></li>
-                
-                <li v-if="!isAuthenticated">
-                  <a href="/register" class="block text-md text-sky-800 hover:bg-gray-100 p-2 rounded transition duration-300">Registrarse / Iniciar sesión</a>
-                </li>
-                <li v-if="isAuthenticated">
-                  <button @click="logout" class="block text-md text-red-500 hover:bg-gray-100 p-2 rounded transition duration-300">Cerrar Sesión</button>
-                </li>
-              </ul>
-            </div>
-          </transition>
+          <transition name="slide">
+  <div v-if="userMenuOpen" class="fixed inset-0 bg-white z-50 p-4 transition-all duration-300 ease-in-out flex flex-col items-center justify-center">
+    <button @click="toggleUserMenu" class="text-black focus:outline-none absolute top-4 right-4">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <ul class="flex flex-col items-center space-y-4 mt-8">
+      <li><a href="/" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Inicio</a></li>
+      <li><a href="/precios" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Precios</a></li>
+      <li><a href="/consolas" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Consolas</a></li>
+      <li><a href="/emuladores" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Emuladores</a></li>
+      <li><a href="/team" class="block text-md hover:bg-gray-100 p-2 rounded transition duration-300">Team</a></li>
+
+      <li v-if="!isAuthenticated">
+        <a href="/register" class="block text-md text-sky-800 hover:bg-gray-100 p-2 rounded transition duration-300">Registrarse / Iniciar sesión</a>
+      </li>
+      <li v-if="isAuthenticated">
+        <button @click="logout" class="block text-md text-red-500 hover:bg-gray-100 p-2 rounded transition duration-300">Cerrar Sesión</button>
+      </li>
+    </ul>
+  </div>
+</transition>
         </div>
       </div>
     </nav>
@@ -181,4 +180,21 @@ export default {
     transform: translateY(-100%);
   }
 }
+@media (max-width: 768px) {
+    .slide-enter-active, .slide-leave-active {
+      transition: transform 0.3s ease-in-out;
+    }
+    .slide-enter, .slide-leave-to  {
+      transform: translateY(-100%);
+    }
+  }
+
+  @media (min-width: 769px) {
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity 0.3s ease-in-out;
+    }
+    .fade-enter, .fade-leave-to  {
+      opacity: 0;
+    }
+  }
 </style>

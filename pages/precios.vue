@@ -60,7 +60,12 @@
                 <span class="text-4xl font-bold tracking-tight text-gray-900">$49</span>
                 <span class="text-xs font-semibold leading-5 tracking-wide text-gray-600">MX</span>
               </p>
-              <button @click="handleSubscription" class="mt-8 block w-full rounded-md bg-sky-400 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 animate-bounce">Suscribirme</button>
+              <button 
+                @click="redirectToCheckout" 
+                :class="{'bg-red-400 hover:bg-red-500': isSubscribed, 'bg-sky-400 hover:bg-sky-500': !isSubscribed}"
+                class="mt-8 block w-full rounded-md px-3 py-2 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 animate-bounce">
+                {{ isSubscribed ? "Cancelar" : "Suscribirme" }}
+              </button>
               <p class="mt-4 text-xs leading-4 text-gray-600">Retro-Arcade</p>
             </div>
           </div>
@@ -73,11 +78,34 @@
 <script>
 export default {
   name: 'Pricing',
+  data() {
+    return {
+      isSubscribed: false, 
+    };
+  },
+  async mounted() {
+    await this.checkSubscription();
+  },
   methods: {
-    handleSubscription() {
+    async checkSubscription() {
+      const emailCookie = document.cookie.split(';').find(item => item.trim().startsWith('email='));
+      if (emailCookie) {
+        const emailValue = emailCookie.split('=')[1];
+        try {
+          const response = await fetch(`https://api.hsa-games.com/api/user?email=${emailValue}`);
+          if (response.ok) {
+            const userData = await response.json();
+            this.isSubscribed = userData.isSubscribed; 
+          }
+        } catch (error) {
+          console.error('Error al obtener la información del usuario:', error);
+        }
+      }
+    },
+    redirectToCheckout() {
       const emailExists = document.cookie.split(';').some((item) => item.trim().startsWith('email='));
       if (emailExists) {
-        window.location.href = '/checkout';
+        window.location.href = '/checkout'; 
       } else {
         window.location.href = '/login';
       }
