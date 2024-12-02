@@ -4,21 +4,9 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl mx-auto">
       <div class="bg-white rounded-lg p-3 transition-transform transform hover:scale-105">
         <img src="/img/Samuel.png" alt="Miembro del equipo" class="mb-2 w-20 h-auto mx-auto rounded-full border-4 border-gray-200" />
-        <h3 class="text-sm font-semibold text-gray-800">Alejandro Delgadillo</h3>
-        <p class="text-sm text-gray-600 mt-1">Desarrollador/Backend</p>
-        <p class="text-sm mt-1 text-gray-400">006210025</p>
-      </div>
-      <div class="bg-white rounded-lg p-3 transition-transform transform hover:scale-105">
-        <img src="/img/Hector.png" alt="Miembro del equipo" class="mb-2 w-20 h-auto mx-auto rounded-full border-4 border-gray-200" />
-        <h3 class="text-sm font-semibold text-gray-800">Héctor Chacón </h3>
-        <p class="text-sm text-gray-600 mt-1">Documentación/Estructuración</p>
-        <p class="text-sm mt-1 text-gray-400">9120170033</p>
-      </div>
-      <div class="bg-white rounded-lg p-3 transition-transform transform hover:scale-105">
-        <img src="/img/Alexis.png" alt="Miembro del equipo" class="mb-2 w-20 h-auto mx-auto rounded-full border-4 border-gray-200" />
-        <h3 class="text-sm font-semibold text-gray-800">Alexis Zavala</h3>
-        <p class="text-sm text-gray-600 mt-1">Documentación</p>
-        <p class="text-sm mt-1 text-gray-400">091170038</p>
+        <h3 class="text-sm font-semibold text-gray-800">Alejandro Delgadillo Barajas</h3>
+        <p class="text-sm text-gray-600 mt-1">alexdgbs</p>
+        <p class="text-sm mt-1 text-gray-400">FULL STACK</p>
       </div>
     </div>
 

@@ -28,11 +28,11 @@ export default {
     return {
       emuladores: [
         { nombre: 'PSP', link: 'https://www.ppsspp.org/', imagen: '/img/psp.png' },
-        { nombre: 'PS2', link: 'https://pcsx2.net/', imagen: '/img/ps2.png' },
+        { nombre: 'Snes', link: 'https://www.snes9x.com/', imagen: '/img/snes-consoles.png' },
         { nombre: 'GameCube', link: 'https://es.dolphin-emu.org/?cr=es', imagen: '/img/gamecube-consoles.png' },
-        { nombre: 'GBA', link: 'https://visualboyadvance.org/', imagen: '/img/gameboyadvance.png' },
-        { nombre: 'Snes', link: 'https://www.snes9x.com/', imagen: '/img/nes.png' },
-        { nombre: 'Nintendo 64', link: 'https://www.pj64-emu.com/', imagen: '/img/nintendo64.png' },
+        
+        
+        
       ],
       hoveredIndex: null,
     };
@@ -80,52 +80,35 @@ h1 {
 
 .tv-container {
   background: #ffffff; 
-  border-radius: 15px;
-  padding: 35px; 
+
+  padding: 15px; 
   position: relative; 
   overflow: hidden; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.tv-container::before {
-  content: "";
-  position: absolute;
-  top: 5px; 
-  left: 5px; 
-  right: 5px; 
-  bottom: 5px; 
-  border: 5px solid #ffffff; 
-  border-radius: 10px; 
-  pointer-events: none; 
-}
 
 .emulador-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); 
-  gap: 15px; 
-  padding: 10px 0; 
+  grid-template-columns: repeat(3, 1fr);
+  padding: 10px 0;
+  justify-items: center; 
+  align-items: center;  
+  
 }
 
 .emulador-card {
   width: 100px; 
   height: 100px; 
-  background-color: #ffffff; 
-  border-radius: 100px; 
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
-.emulador-card:hover {
-  transform: scale(1.05); 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
-} 
-
 .emulador-imagen {
-  width: 60%; 
+  width: 100%; 
   height: auto;
 }
 
@@ -144,11 +127,11 @@ h1 {
   .emulador-card {
     width: 80px; 
     height: 80px; 
-    margin: 10px; 
   }
 
   .emulador-grid {
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); 
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;  
   }
 }
 </style>
